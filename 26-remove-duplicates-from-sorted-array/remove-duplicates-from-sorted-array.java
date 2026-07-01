@@ -5,14 +5,6 @@ class Solution {
         int write = 1;
         int len = nums.length;
 
-        if(len ==0){
-            return 0;
-        }
-        if(len ==1){
-            return 1;
-
-        }
-
         while(read<len){
 
                 if(nums[read]!=nums[write-1]){
