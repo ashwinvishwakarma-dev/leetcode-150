@@ -1,23 +1,28 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
 
-        int read =  1; 
+        int read = 1;
         int write = 1;
         int len = nums.length;
 
-        while(read<len){
+        if (len == 0) {
+            return 0;
+        }
+        if (len == 1) {
+            return 1;
 
-                if(nums[read]!=nums[write-1]){
-                    nums[write]=nums[read];
-                    write++;
-                }
-                read++;
+        }
 
+        while (read < len) {
+
+            if (nums[read] != nums[write - 1]) {
+                nums[write] = nums[read];
+                write++;
+            }
+            read++;
 
         }
         return write;
-        
 
-        
     }
 }
