@@ -15,6 +15,9 @@ class Solution {
                 str.append(symbols[i]);
                 num = num-values[i];
             }
+            if (num==0){
+                return str.toString();
+            }
         }
 
        return str.toString();
