@@ -10,22 +10,25 @@ class Solution {
     HashMap<String, Character> wordToChar = new HashMap<>();
 
     for (int i = 0; i < pattern.length(); i++) {
-      if (charToWord.containsKey(pattern.charAt(i))) {
-        if (!charToWord.get(pattern.charAt(i)).equals(str[i])) {
-          return false;
-        }
-      }
-      charToWord.put(pattern.charAt(i), str[i]);
-    }
-    for (int i = 0; i < pattern.length(); i++) {
-      if (wordToChar.containsKey(str[i])) {
-        if (!wordToChar.get(str[i]).equals(pattern.charAt(i))) {
-          return false;
-        }
-      }
-      wordToChar.put(str[i], pattern.charAt(i));
-    }
 
+      char character = pattern.charAt(i);
+      String word = str[i];
+
+      if (charToWord.containsKey(character)) {
+        if (!charToWord.get(character).equals(word)) {
+          return false;
+        }
+      }
+      charToWord.put(character, word);
+
+      if (wordToChar.containsKey(str[i])) {
+        if (!wordToChar.get(word).equals(character)) {
+          return false;
+        }
+      }
+
+      wordToChar.put(word, character);
+    }
     return true;
   }
 }
