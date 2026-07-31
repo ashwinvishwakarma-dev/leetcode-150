@@ -11,9 +11,6 @@ class Solution {
 			if (height[left] < height[right]) {
 				area = diff * height[left];
 				left++;
-			} else if (height[left] > height[right]) {
-				area = diff * height[right];
-				right--;
 			} else {
 				area = diff * height[right];
 				right--;
