@@ -22,7 +22,5 @@ class Solution {
         right--;
       }
     }
-
-    System.out.println(Arrays.deepToString(matrix));
   }
 }
