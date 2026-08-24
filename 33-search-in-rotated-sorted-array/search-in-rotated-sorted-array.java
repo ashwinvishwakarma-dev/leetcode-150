@@ -9,14 +9,18 @@ class Solution {
 			if (nums[mid] == target) {
 				return mid;
 			}
-			
+			// Left Sorted Array
 			if (nums[left] <= nums[mid]) {
+        // Check Element from Left to Mid
 				if (nums[left] <= target && nums[mid] > target) {
 					right = mid - 1;
 				} else {
 					left = mid + 1;
 				}
-			} else {
+			}
+      // Right Sorted Array 
+      else {
+        // Check Element from Mid to Right
 				if (nums[mid] < target && nums[right] >= target) {
 					left = mid + 1;
 				} else {
