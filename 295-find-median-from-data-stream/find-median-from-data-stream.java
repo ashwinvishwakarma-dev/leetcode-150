@@ -1,48 +1,35 @@
 class MedianFinder {
-
-  List<Integer> list;
-
-  public MedianFinder() {
-    list = new ArrayList<>();
-  }
-
-  public void addNum(int num) {
-
-    int left = 0;
-    int right = list.size();
-
-    while (left < right) {
-
-        int mid = left + (right - left) / 2;
-
-        if (list.get(mid) < num) {
-            left = mid + 1;
-        } else {
-            right = mid;
-        }
-    }
-
-    list.add(left, num);
+	
+	PriorityQueue<Integer> left;
+	PriorityQueue<Integer> right;
+	
+	public MedianFinder() {
+		left = new PriorityQueue<>(Collections.reverseOrder());
+		right = new PriorityQueue<>();
+	}
+	
+	public void addNum(int num) {
+		left.add(num);
+		
+		if (!right.isEmpty() && left.peek() > right.peek()) {
+			left.add(right.poll());
+			right.add(left.poll());
+		}
+		if (left.size() - 1 > right.size()) {
+			right.add(left.poll());
+		}
+		
+	}
+	
+	public double findMedian() {
+		
+		if (left.isEmpty() && right.isEmpty()) {
+			return 0.0;
+		}
+		
+		if (left.size() == right.size()) {
+			return (left.peek() + right.peek()) / 2.0;
+		} 
+		return left.peek();
+	}
 }
-
-  public double findMedian() {
-    double index = 0.0;
-    if (!list.isEmpty()) {
-      int size = list.size();
-      int median = size / 2;
-      if (size % 2 == 0) {
-        index = (double) (list.get(median) + list.get(median - 1)) / 2;
-      } else {
-        index = list.get(median);
-      }
-    }
-    return index;
-  }
-}
-
-/**
- * Your MedianFinder object will be instantiated and called as such:
- * MedianFinder obj = new MedianFinder();
- * obj.addNum(num);
- * double param_2 = obj.findMedian();
- */
